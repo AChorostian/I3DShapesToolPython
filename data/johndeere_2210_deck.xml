@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<vehicle type="deckJD" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../shared/xml/schema/vehicle.xsd">
+    <annotation>Copyright (C) GIANTS Software GmbH, All Rights Reserved.</annotation>
+
+    <storeData>
+        <name>
+            <en>John Deere 2210 deck</en>
+            <de>John Deere 2210 deck</de>
+            <br>John Deere 2210 deck</br>
+		</name>
+        <specs>
+            <workingWidth>2</workingWidth>
+        </specs>
+        <functions>
+            <function>$l10n_function_mower</function>
+        </functions>
+        <image>store_johnDeere_2210_deck.png</image>
+        <price>750</price>
+        <lifetime>600</lifetime>
+        <rotation>0</rotation>
+        <brand>JOHNDEERE</brand>
+        <category>mowers</category>
+        <shopTranslationOffset>0 -0.02 0</shopTranslationOffset>
+        <shopRotationOffset>0 0 0</shopRotationOffset>
+        <vertexBufferMemoryUsage>332800</vertexBufferMemoryUsage>
+        <indexBufferMemoryUsage>131328</indexBufferMemoryUsage>
+        <textureMemoryUsage>2228224</textureMemoryUsage>
+        <audioMemoryUsage>0</audioMemoryUsage>
+        <instanceVertexBufferMemoryUsage>0</instanceVertexBufferMemoryUsage>
+        <instanceIndexBufferMemoryUsage>0</instanceIndexBufferMemoryUsage>
+    </storeData>
+
+    <base>
+        <typeDesc>$l10n_typeDesc_mower</typeDesc>
+        <filename>johndeere_2210_deck.i3d</filename>
+        <size width="1.2" length="1" lengthOffset="0.1" height="0.4"/>
+        <speedLimit value="12" />
+        <components>
+            <component centerOfMass="-0.05 0.18 -0.05" solverIterationCount="10" mass="200" />
+        </components>
+		<supportsPickUp>true</supportsPickUp>
+        <schemaOverlay attacherJointPosition="0 0" name="IMPLEMENT" />
+        <sounds volumeFactor="1.7"/>
+    </base>
+
+    <powerConsumer ptoRpm="800" neededMinPtoPower="0" neededMaxPtoPower="0"/>
+
+	<attachable>
+        <inputAttacherJoints>	
+            <inputAttacherJoint node="attacherJoint" jointType="DECK" upperRotationOffset="0" lowerRotLimitScale="0 0 0" lowerTransLimitScale="0 0 0">
+                <distanceToGround lower="0.15" upper="0.8" />
+
+					<objectChange node="turnOn" visibilityActive="true" visibilityInactive="false"/>
+					<objectChange node="coverPulley" visibilityActive="true" visibilityInactive="false"/>
+					<objectChange node="supportDeck_moving01" visibilityActive="true" visibilityInactive="false"/>
+					<objectChange node="supportDeck_moving02" visibilityActive="true" visibilityInactive="false"/>
+					<objectChange node="skinnedMesh" visibilityActive="true" visibilityInactive="false"/>
+					
+					<objectChange node="colPart_deck_01" scaleActive="0.01 0.01 0.01" scaleInactive="1 1 1"/>
+					<objectChange node="colPart_deck_01" translationActive="0 0.2 0" translationInactive="0 0 0"  visibilityActive="true" visibilityInactive="false"/>
+					<objectChange node="colPart_deck_02" scaleActive="0.01 0.01 0.01" scaleInactive="1 1 1"/>
+					<objectChange node="colPart_deck_02" translationActive="0 0.2 0" translationInactive="0 0 0"  visibilityActive="true" visibilityInactive="false"/>
+					<objectChange node="colPart_deck_03" scaleActive="0.01 0.01 0.01" scaleInactive="1 1 1"/>
+					<objectChange node="colPart_deck_03" translationActive="0 0.2 0" translationInactive="0 0 0"  visibilityActive="true" visibilityInactive="false"/>
+            </inputAttacherJoint>
+        </inputAttacherJoints>
+        <sounds>
+            <attach template="ATTACH_01" />
+        </sounds>
+    </attachable>
+
+    <speedRotatingParts>
+        <speedRotatingPart node="wheelFront_deck" radius="0.2" groundReferenceNodeIndex="2" />
+        <speedRotatingPart node="wheelLeft_deck" radius="0.2" groundReferenceNodeIndex="2" />
+        <speedRotatingPart node="wheelRight_deck" radius="0.2" groundReferenceNodeIndex="2" />
+    </speedRotatingParts>
+
+    <foldable>
+        <foldingConfigurations>
+            <foldingConfiguration>
+                <foldingParts startMoveDirection="0" posDirectionText="$l10n_action_liftOBJECT" negDirectionText="$l10n_action_lowerOBJECT" foldInputButton="LOWER_IMPLEMENT">
+                    <foldingPart animationName="lowerAnimation"  speedScale="1" />
+                </foldingParts>
+            </foldingConfiguration>
+        </foldingConfigurations>
+    </foldable>
+
+    <animations>
+        <animation name="turnedAnimation">
+            <part node="supportPulleyDeck_startStop" startTime="0" endTime="1" startTrans="0.117 -0.29762101 -0.40660101" endTrans="0.117 -0.29762101 -0.427"/>
+            <part node="startStop" startTime="0" endTime="1" startRot="0 0 0" endRot="-45 0 0"/>
+        </animation>
+        <animation name="lowerAnimation">
+            <part node="deckTurnOn" startTime="0" endTime="1" startTrans="0 -0.08 0.01" endTrans="0 -0.03 0"/>
+            <part node="leverUpDown" startTime="0" endTime="1" startRot="23 0 0" endRot="-10 0 0"/>
+
+            <part node="groundReferenceNode_mulcher" startTime="0" endTime="1" startTrans="0 0 0" endTrans="0 1.8 0"/>
+        </animation>
+		<animation name="groundReferenceMOWER">
+			<part node="groundReferenceNode" startTime="0" endTime="1"  startTrans="0 0 0" endTrans="0 5 0"/>
+        </animation>
+		<animation name="groundReferenceMULCHER">
+			<part node="groundReferenceNode_mulcher" startTime="0" endTime="1"  startTrans="0 0 0" endTrans="0 5 0"/>
+        </animation>
+    </animations>
+
+    <cylindered>
+        <movingParts>
+            <movingPart node="supportDeck_moving01" referencePoint="supportDeck_moving01Ref" referenceFrame="supportDeck_moving01Ref" isActiveDirty="true" scaleZ="true" maxUpdateDistance="-"/>
+            <movingPart node="supportDeck_moving02" referencePoint="supportDeck_moving02Ref" referenceFrame="supportDeck_moving02Ref" isActiveDirty="true" scaleZ="true" maxUpdateDistance="-"/>
+            <movingPart node="springStartStop" referencePoint="springStartStopRef" referenceFrame="springStartStopRef" isActiveDirty="true" scaleZ="true" maxUpdateDistance="-"/>
+        </movingParts>
+    </cylindered>
+
+    <groundReferenceNodes>
+        <groundReferenceNode node="groundReferenceNode"  threshold="0.15" onlyActiveWhenLowered="false"/>
+        <groundReferenceNode node="groundReferenceNode_mulcher" threshold="0.15" onlyActiveWhenLowered="false" />
+        <groundReferenceNode node="groundWheelReferenceNode" threshold="0.15" onlyActiveWhenLowered="true" />
+    </groundReferenceNodes>
+
+	<workModes  foldMinLimit="0" foldMaxLimit="0.2">
+        <workMode name="$l10n_action_workMode_mowit" inputBindingName="WORKMODE_RIGHT">
+            <animation name="groundReferenceMOWER" speed="-1" repeatAfterUnfolding="true"/>
+            <animation name="groundReferenceMULCHER" speed="1" repeatAfterUnfolding="true"/>
+
+            <workAreas>
+                <workArea workAreaIndex="1" dropAreaIndex="2"/>
+            </workAreas>
+        </workMode>
+        <workMode name="$l10n_action_workMode_bagit" inputBindingName="WORKMODE_MIDDLE">
+            <animation name="groundReferenceMOWER" speed="-1" repeatAfterUnfolding="true"/>
+            <animation name="groundReferenceMULCHER" speed="1" repeatAfterUnfolding="true"/>
+	
+			<workAreas>
+                <workArea workAreaIndex="1" dropAreaIndex="3"/>
+            </workAreas>
+        </workMode>
+		
+        <workMode name="$l10n_action_workMode_mulchit" inputBindingName="WORKMODE_MIDDLE">
+            <animation name="groundReferenceMOWER" speed="1" repeatAfterUnfolding="true"/>
+            <animation name="groundReferenceMULCHER" speed="-1" repeatAfterUnfolding="true"/>
+			
+            <animation name="sideDischargeMowAnim" speed="1" repeatAfterUnfolding="true"/>
+            <animation name="sideDischargeBagAnim" speed="-1" repeatAfterUnfolding="true"/>
+			
+            <workAreas>
+                <workArea workAreaIndex="4"/>
+            </workAreas>
+        </workMode>
+    </workModes>
+
+    <workAreas>
+		<!-- Mower -->
+        <workArea type="mower" functionName="processMowerArea" disableBackwards="false" >
+            <area startNode="WorkAreaStart" widthNode="WorkAreaWidth" heightNode="WorkAreaHeight" />
+            <groundReferenceNode index="1" />
+            <mower dropWindrow="true" />
+        </workArea>
+
+        <workArea type="auxiliary" >
+            <area startNode="DropAreaStart" widthNode="DropAreaWidth" heightNode="DropAreaHeight" />
+        </workArea>
+        <workArea type="auxiliary" >
+            <area startNode="DropAreaStart2" widthNode="DropAreaWidth2" heightNode="DropAreaHeight2" />
+        </workArea>
+
+		<!-- Mulcher -->
+        <workArea type="mulcher" functionName="processMulcherArea" requiresOwnedFarmland="false" disableBackwards="false">
+            <area startNode="WorkAreaStart2" widthNode="WorkAreaWidth2" heightNode="WorkAreaHeight2" />
+            <groundReferenceNode index="2" />
+        </workArea>
+    </workAreas>
+
+    <mower fruitTypeConverter="MOWER">
+        <animationNodes>
+            <animationNode node="knife01"      rotSpeed="-2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5"/>
+            <animationNode node="knife02"      rotSpeed="-2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5"/>
+            <animationNode node="knife03"      rotSpeed="-2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5"/>
+            <animationNode node="pulleyDeck02"      rotSpeed="2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5"/>
+            <animationNode node="pulleyDeck01"      rotSpeed="2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5"/>
+            <animationNode node="pulleyDeck03"      rotSpeed="2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5"/>
+            <animationNode node="pulleyDeck_moving"      rotSpeed="2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5"/>
+            <animationNode node="beltDeck_side"      rotSpeed="-2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5" shaderComponentScale="0 1 0 0" shaderParameterName="offsetUV" />
+            <animationNode node="beltDeck_down"      rotSpeed="2500" rotAxis="1" turnOnFadeTime="1" turnOffFadeTime="5" shaderComponentScale="0 1 0 0" shaderParameterName="offsetUV" />
+        </animationNodes>
+		
+        <dropEffects>
+			<dropEffect workAreaIndex="1" dropAreaIndex="2">
+                <effectNode effectClass="TypedMotionPathEffect" effectType="MOWER" linkNode="mowerEffectNode01">
+                    <motionPathEffect textureFilename="$data/vehicles/faresin/pf224/unloadEffectFrontRightArray.dds" numRows="9" rowLength="11" minFade="0.15"/>
+                </effectNode>
+            </dropEffect>
+        </dropEffects>
+				
+        <sounds>
+            <cut template="mowerToolWork_01" linkNode="johnDeere110_120_deck_component"/>
+        </sounds>
+    </mower>
+
+    <turnOnVehicle turnOffIfNotAllowed="true">
+        <turnedAnimation name="turnedAnimation" turnOnSpeedScale="2"/>
+        <sounds>
+            <start file="sounds/johnDeere110_112_deck_startWORK.wav"       volumeScale="0.8" linkNode="johnDeere110_120_deck_component" />
+            <stop file="sounds/johnDeere110_112_deck_stopWORK.wav"         volumeScale="0.8" linkNode="johnDeere110_120_deck_component" />
+            <work file="sounds/johnDeere110_112_deck_idleWORK.wav"         volumeScale="0.8" linkNode="johnDeere110_120_deck_component" />
+        </sounds>
+    </turnOnVehicle>
+
+	<mulcher>
+        <effects>
+            <effect workAreaIndex="4">
+                <effectNode effectClass="TypedMotionPathEffect" effectType="MULCHER" linkNode="mulcherEffectNode">
+                    <motionPathEffect textureFilename="$data/vehicles/faresin/pf224/unloadEffectFrontRightArray.dds" numRows="9" rowLength="11" minFade="0.15"/>
+                </effectNode>				
+                <effectNode effectNode="smokeEmitter" effectClass="ParticleEffect" particleType="smoke" materialType="smokeParticle" worldSpace="false" emitCountScale="0.05"/>
+            </effect>				
+        </effects>
+        <sounds>
+            <work template="mowerToolWork_01" linkNode="johnDeere110_120_deck_component" />
+        </sounds>
+    </mulcher>
+
+	<workParticles>
+        <particle>
+            <node node="smokeEmitter" refNodeIndex="1" particleType="SOIL_SMOKE" emitCountScale="2.5"/>
+        </particle>		
+    </workParticles>
+
+    <tensionBeltObject>
+        <meshNodes>
+            <meshNode node="tensionObject_deck_01"/>
+            <meshNode node="tensionObject_deck_02"/>
+        </meshNodes>
+    </tensionBeltObject>
+
+    <ai>
+        <needsLowering value="true" />
+        <collisionTrigger node="aiCollisionNode" width="1.2" height="0.8" length="2"/>
+        <agentAttachment width="1.2" height="1.2" length="1" lengthOffset="0.05"/>
+    </ai>
+
+    <foliageBending>
+        <bendingNode minX="-0.6" maxX="0.5" minZ="-0.3" maxZ="0.35" yOffset="0.02"/>
+    </foliageBending>
+
+    <wearable wearDuration="480" workMultiplier="5" fieldMultiplier="2"/>
+    <washable dirtDuration="90" washDuration="1" workMultiplier="4" fieldMultiplier="2"/>
+
+<i3dMappings>
+  <i3dMapping id="johnDeere110_120_deck_component" node="0>" />
+  <i3dMapping id="johnDeere110_112_deck" node="0>0" />
+  <i3dMapping id="attacherJoints" node="0>0|0" />
+  <i3dMapping id="attacherJointRot" node="0>0|0|0" />
+  <i3dMapping id="attacherJoint" node="0>0|0|0|0" />
+  <i3dMapping id="topReferenceNode" node="0>0|0|1" />
+  <i3dMapping id="animations" node="0>0|1" />
+  <i3dMapping id="deckTurnOn" node="0>0|1|0" />
+  <i3dMapping id="movingParts" node="0>0|1|0|0" />
+  <i3dMapping id="knifes_pulley_rot" node="0>0|1|0|0|0" />
+  <i3dMapping id="knife01" node="0>0|1|0|0|0|0" />
+  <i3dMapping id="knife02" node="0>0|1|0|0|0|1" />
+  <i3dMapping id="knife03" node="0>0|1|0|0|0|2" />
+  <i3dMapping id="pulleyDeck_moving" node="0>0|1|0|0|0|3" />
+  <i3dMapping id="joint_beltDown" node="0>0|1|0|0|1" />
+  <i3dMapping id="boneBeltDownB" node="0>0|1|0|0|1|0" />
+  <i3dMapping id="supportDeck_moving01Ref" node="0>0|1|0|0|2" />
+  <i3dMapping id="supportDeck_moving02Ref" node="0>0|1|0|0|3" />
+  <i3dMapping id="wheelFront_deck" node="0>0|1|0|0|4" />
+  <i3dMapping id="wheelLeft_deck" node="0>0|1|0|0|5" />
+  <i3dMapping id="wheelRight_deck" node="0>0|1|0|0|6" />
+  <i3dMapping id="workAreas" node="0>0|1|0|1" />
+  <i3dMapping id="WorkAreaStart" node="0>0|1|0|1|0" />
+  <i3dMapping id="WorkAreaWidth" node="0>0|1|0|1|1" />
+  <i3dMapping id="WorkAreaHeight" node="0>0|1|0|1|2" />
+  <i3dMapping id="DropAreaStart" node="0>0|1|0|1|3" />
+  <i3dMapping id="DropAreaWidth" node="0>0|1|0|1|4" />
+  <i3dMapping id="DropAreaHeight" node="0>0|1|0|1|5" />
+  <i3dMapping id="WorkAreaStart2" node="0>0|1|0|1|6" />
+  <i3dMapping id="WorkAreaWidth2" node="0>0|1|0|1|7" />
+  <i3dMapping id="WorkAreaHeight2" node="0>0|1|0|1|8" />
+  <i3dMapping id="DropAreaStart2" node="0>0|1|0|1|9" />
+  <i3dMapping id="DropAreaWidth2" node="0>0|1|0|1|10" />
+  <i3dMapping id="DropAreaHeight2" node="0>0|1|0|1|11" />
+  <i3dMapping id="effects" node="0>0|1|0|2" />
+  <i3dMapping id="mowerEffectNode01" node="0>0|1|0|2|0" />
+  <i3dMapping id="smokeEmitter" node="0>0|1|0|2|1" />
+  <i3dMapping id="groundReference" node="0>0|1|0|3" />
+  <i3dMapping id="groundReferenceNode" node="0>0|1|0|3|0" />
+  <i3dMapping id="groundReferenceNode_mulcher" node="0>0|1|0|3|1" />
+  <i3dMapping id="groundWheelReferenceNode" node="0>0|1|0|3|2" />
+  <i3dMapping id="mulcherEffectNode" node="0>0|1|0|4" />
+  <i3dMapping id="mowerEffectNode02" node="0>0|1|0|5" />
+  <i3dMapping id="visualsDeck" node="0>0|1|0|6" />
+  <i3dMapping id="johnDeere110_112_deck_vis" node="0>0|1|0|6|0" />
+  <i3dMapping id="rivetsDeck_vis" node="0>0|1|0|6|1" />
+  <i3dMapping id="deckDecals_vis" node="0>0|1|0|6|2" />
+  <i3dMapping id="tensionObject" node="0>0|1|0|7" />
+  <i3dMapping id="tensionObject_deck_01" node="0>0|1|0|7|0" />
+  <i3dMapping id="tensionObject_deck_02" node="0>0|1|0|7|1" />
+  <i3dMapping id="collisionDeck" node="0>0|1|0|8" />
+  <i3dMapping id="colPart_deck_01" node="0>0|1|0|8|0" />
+  <i3dMapping id="colPart_deck_02" node="0>0|1|0|8|1" />
+  <i3dMapping id="colPart_deck_03" node="0>0|1|0|8|2" />
+  <i3dMapping id="colPart_deck_04" node="0>0|1|0|8|3" />
+  <i3dMapping id="moving" node="0>0|1|1" />
+  <i3dMapping id="supportDeck_moving01" node="0>0|1|1|0" />
+  <i3dMapping id="supportDeck_moving02" node="0>0|1|1|1" />
+  <i3dMapping id="turnOn" node="0>0|1|2" />
+  <i3dMapping id="supportPulleyDeck_vis" node="0>0|1|2|0" />
+  <i3dMapping id="supportPulleyDeck_startStop" node="0>0|1|2|0|0" />
+  <i3dMapping id="pulleyDeck02" node="0>0|1|2|0|0|0" />
+  <i3dMapping id="supportPulleyDeck_trans" node="0>0|1|2|0|0|1" />
+  <i3dMapping id="springStartStop" node="0>0|1|2|0|0|2" />
+  <i3dMapping id="spring_vis" node="0>0|1|2|0|0|2|0" />
+  <i3dMapping id="joint_beltSide" node="0>0|1|2|0|0|3" />
+  <i3dMapping id="boneBeltSideB" node="0>0|1|2|0|0|3|0" />
+  <i3dMapping id="startStop" node="0>0|1|2|1" />
+  <i3dMapping id="startStop_decal" node="0>0|1|2|1|0" />
+  <i3dMapping id="springStartStopRef" node="0>0|1|2|1|1" />
+  <i3dMapping id="pulleyTurnOn" node="0>0|1|2|2" />
+  <i3dMapping id="pulleyDeck01" node="0>0|1|2|2|0" />
+  <i3dMapping id="pulleyDeck03" node="0>0|1|2|2|1" />
+  <i3dMapping id="leverUpDown" node="0>0|1|2|3" />
+  <i3dMapping id="visual" node="0>0|2" />
+  <i3dMapping id="coverPulley" node="0>0|2|0" />
+  <i3dMapping id="aiMarker" node="0>0|3" />
+  <i3dMapping id="aiMarkerLeft" node="0>0|3|0" />
+  <i3dMapping id="aiMarkerRight" node="0>0|3|1" />
+  <i3dMapping id="aiMarkerBack" node="0>0|3|2" />
+  <i3dMapping id="aiSizeMarkerLeft" node="0>0|3|3" />
+  <i3dMapping id="aiSizeMarkerRight" node="0>0|3|4" />
+  <i3dMapping id="aiSizeMarkerBack" node="0>0|3|5" />
+  <i3dMapping id="aiCollisionNode" node="0>0|3|6" />
+  <i3dMapping id="skinnedMesh" node="0>0|4" />
+  <i3dMapping id="beltDeck_side" node="0>0|4|0" />
+  <i3dMapping id="rootJoint_beltSide" node="0>0|4|1" />
+  <i3dMapping id="boneBeltSideA" node="0>0|4|1|0" />
+  <i3dMapping id="beltDeck_down" node="0>0|4|2" />
+  <i3dMapping id="rootJoint_beltDown" node="0>0|4|3" />
+  <i3dMapping id="boneBeltDownA" node="0>0|4|3|0" />
+</i3dMappings>
+
+</vehicle>

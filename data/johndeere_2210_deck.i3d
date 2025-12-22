@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<i3D name="johndeere_2210_deck.i3d" version="1.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://i3d.giants.ch/schema/i3d-1.6.xsd">
+  <Asset>
+    <Export program="GIANTS Editor 64bit" version="10.0.3"/>
+  </Asset>
+
+  <Files>
+    <File fileId="3" filename="$data/shaders/vehicleShader.xml"/>
+    <File fileId="13" filename="$data/shared/assets/assetLibraryDecals_diffuse.dds"/>
+    <File fileId="14" filename="$data/shared/assets/assetLibraryDecals_normal.dds"/>
+    <File fileId="15" filename="$data/shared/assets/assetLibraryDecals_vmask.dds"/>
+    <File fileId="40" filename="$data/shared/default_normal.dds"/>
+    <File fileId="5" filename="$data/shared/detailLibrary/flat_normal.dds"/>
+    <File fileId="35" filename="$data/shared/detailLibrary/metallic/clear_diffuse.dds"/>
+    <File fileId="34" filename="$data/shared/detailLibrary/metallic/rough_specular.dds"/>
+    <File fileId="37" filename="$data/shared/detailLibrary/metallic/scratched_diffuse.dds"/>
+    <File fileId="36" filename="$data/shared/detailLibrary/metallic/silverBumpy_specular.dds"/>
+    <File fileId="4" filename="$data/shared/detailLibrary/nonMetallic/metal/metalPaintedRough_specular.dds"/>
+    <File fileId="6" filename="$data/shared/detailLibrary/nonMetallic/metal/metalPainted_diffuse.dds"/>
+    <File fileId="11" filename="$data/shared/detailLibrary/nonMetallic/metal/metalPainted_specular.dds"/>
+    <File fileId="28" filename="$data/shared/detailLibrary/nonMetallic/plastic/plasticLeatherGrainSmall_normal.dds"/>
+    <File fileId="29" filename="$data/shared/detailLibrary/nonMetallic/plastic/plasticPainted_diffuse.dds"/>
+    <File fileId="27" filename="$data/shared/detailLibrary/nonMetallic/plastic/plasticPainted_specular.dds"/>
+    <File fileId="21" filename="$data/shared/detailLibrary/nonMetallic/rubber/rubberBlack_diffuse.dds"/>
+    <File fileId="41" filename="$data/shared/detailLibrary/nonMetallic/rubber/rubber_diffuse.dds"/>
+    <File fileId="20" filename="$data/shared/detailLibrary/nonMetallic/rubber/rubber_normal.dds"/>
+    <File fileId="19" filename="$data/shared/detailLibrary/nonMetallic/rubber/rubber_specular.dds"/>
+    <File fileId="2" filename="$data/shared/white_diffuse.dds"/>
+    <File fileId="38" filename="$data/vehicles/amazone/cenio4000/cenio4000Spring_diffuse.dds"/>
+    <File fileId="39" filename="$data/vehicles/amazone/cenio4000/cenio4000Spring_normal.dds"/>
+    <File fileId="30" filename="../../../../Farming Simulator Modding/Removed Items From 2210/texturas/HusqvarnaMZ54_normal.dds"/>
+    <File fileId="31" filename="../../../../Farming Simulator Modding/Removed Items From 2210/texturas/HusqvarnaMZ54_vmask.dds"/>
+    <File fileId="18" filename="textures/72_Mulcher.dds"/>
+    <File fileId="17" filename="textures/Forward_Arrow.dds"/>
+    <File fileId="16" filename="textures/SM_Modding_Logo.dds"/>
+    <File fileId="32" filename="textures/danger_sticker.dds"/>
+    <File fileId="44" filename="textures/johnDeere110_112_belts_diffuse.dds"/>
+    <File fileId="43" filename="textures/johnDeere110_112_belts_normal.dds"/>
+    <File fileId="42" filename="textures/johnDeere110_112_belts_specularvmask.dds"/>
+    <File fileId="25" filename="../../../../../Downloads/FS25_JohnDeere110_112_RoundFender/textures/johnDeere110_112_deck_normal.dds"/>
+    <File fileId="26" filename="../../../../../Downloads/FS25_JohnDeere110_112_RoundFender/textures/johnDeere110_112_deck_specularvmask.dds"/>
+  </Files>
+
+
+  <Materials>
+    <Material name="1johnDeere_green_metal" materialId="5" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="11"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+      <CustomParameter name="colorScale" value="0.04 0.21 0.024"/>
+      <CustomParameter name="clearCoatIntensity" value="0.44"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.85"/>
+    </Material>
+    <Material name="2black_plastic" materialId="6" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="27"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="29"/>
+      <CustomParameter name="colorScale" value="0.03 0.03 0.03"/>
+      <CustomParameter name="clearCoatIntensity" value="0.36"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.66"/>
+      <CustomParameter name="porosity" value="0.5"/>
+    </Material>
+    <Material name="3black_metal" materialId="7" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="4"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+      <CustomParameter name="colorScale" value="0.02 0.02 0.02"/>
+      <CustomParameter name="clearCoatIntensity" value="0.54"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.89"/>
+    </Material>
+    <Material name="3black_metal" materialId="162" customShaderId="3">
+      <Texture fileId="2"/>
+      <Normalmap fileId="25"/>
+      <Glossmap fileId="26"/>
+      <Custommap name="detailSpecular" fileId="4"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+      <CustomParameter name="colorScale" value="0.02 0.02 0.02"/>
+      <CustomParameter name="clearCoatIntensity" value="0.54"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.89"/>
+    </Material>
+    <Material name="4blackPlastic" materialId="163" customShaderId="3">
+      <Texture fileId="2"/>
+      <Normalmap fileId="25"/>
+      <Glossmap fileId="26"/>
+      <Custommap name="detailSpecular" fileId="27"/>
+      <Custommap name="detailNormal" fileId="28"/>
+      <Custommap name="detailDiffuse" fileId="29"/>
+      <CustomParameter name="colorScale" value="0.03 0.03 0.03"/>
+      <CustomParameter name="clearCoatIntensity" value="0.23"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.61"/>
+      <CustomParameter name="porosity" value="0.5"/>
+    </Material>
+    <Material name="4johnDeere_green_metal" materialId="8" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="4"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+      <CustomParameter name="colorScale" value="0.04 0.21 0.024"/>
+    </Material>
+    <Material name="4johnDeere_yellow_metal" materialId="9" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="11"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+      <CustomParameter name="colorScale" value="1 0.7428 0"/>
+      <CustomParameter name="clearCoatIntensity" value="0.6"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.92"/>
+    </Material>
+    <Material name="6metal" materialId="10" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="36"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="37"/>
+      <CustomParameter name="clearCoatIntensity" value="0.75"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.87"/>
+    </Material>
+    <Material name="belts_mat" materialId="11" customShaderId="3" customShaderVariation="uvTransform">
+      <Custommap name="detailSpecular" fileId="19"/>
+      <Custommap name="detailNormal" fileId="20"/>
+      <Custommap name="detailDiffuse" fileId="41"/>
+      <CustomParameter name="porosity" value="0.5"/>
+    </Material>
+    <Material name="belts_mat" materialId="180" customShaderId="3" customShaderVariation="uvTransform">
+      <Custommap name="detailSpecular" fileId="42"/>
+      <Custommap name="detailNormal" fileId="43"/>
+      <Custommap name="detailDiffuse" fileId="44"/>
+      <CustomParameter name="porosity" value="0.5"/>
+    </Material>
+    <Material name="decals_mat" materialId="12" customShaderId="3" customShaderVariation="vmaskUV2">
+      <Normalmap fileId="40"/>
+      <Custommap name="detailSpecular" fileId="11"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+    </Material>
+    <Material name="default" materialId="14" alphaBlending="true" customShaderId="3">
+    </Material>
+    <Material name="default" materialId="13" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="19"/>
+      <Custommap name="detailNormal" fileId="20"/>
+      <Custommap name="detailDiffuse" fileId="21"/>
+    </Material>
+    <Material name="default" materialId="177" customShaderId="3">
+      <Texture fileId="2"/>
+      <Normalmap fileId="30"/>
+      <Glossmap fileId="31"/>
+      <Custommap name="detailSpecular" fileId="19"/>
+      <Custommap name="detailNormal" fileId="20"/>
+      <Custommap name="detailDiffuse" fileId="21"/>
+    </Material>
+    <Material name="default" materialId="15" diffuseColor="0.494118 0.494118 0.494118 1">
+    </Material>
+    <Material name="default" materialId="16" diffuseColor="0.501961 0.501961 0.501961 1">
+    </Material>
+    <Material name="lambert1" materialId="17" diffuseColor="1 1 1 1">
+    </Material>
+    <Material name="metal" materialId="18" customShaderId="3">
+      <Texture fileId="2"/>
+      <Custommap name="detailSpecular" fileId="34"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="35"/>
+      <CustomParameter name="smoothnessScale" value="2.6"/>
+    </Material>
+    <Material name="rivets_mat" materialId="19" customShaderId="3">
+      <Texture fileId="13"/>
+      <Normalmap fileId="14"/>
+      <Glossmap fileId="15"/>
+      <Custommap name="detailSpecular" fileId="11"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+      <CustomParameter name="colorScale" value="1 0.7428 0"/>
+      <CustomParameter name="clearCoatIntensity" value="0.65"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.77"/>
+    </Material>
+    <Material name="spring_mat" materialId="20" customShaderId="3">
+      <Texture fileId="38"/>
+      <Normalmap fileId="39"/>
+      <Custommap name="detailSpecular" fileId="11"/>
+      <Custommap name="detailNormal" fileId="5"/>
+      <Custommap name="detailDiffuse" fileId="6"/>
+      <CustomParameter name="colorScale" value="0.04 0.21 0.024"/>
+      <CustomParameter name="clearCoatIntensity" value="0.66"/>
+      <CustomParameter name="clearCoatSmoothness" value="0.89"/>
+    </Material>
+    <Material name="UnnamedMaterial" materialId="21">
+      <Texture fileId="18"/>
+    </Material>
+    <Material name="UnnamedMaterial" materialId="22">
+      <Texture fileId="32"/>
+    </Material>
+    <Material name="UnnamedMaterial" materialId="23">
+      <Texture fileId="17"/>
+    </Material>
+    <Material name="UnnamedMaterial" materialId="24">
+      <Texture fileId="16"/>
+    </Material>
+  </Materials>
+
+
+  <Shapes externalShapesFile="johndeere_2210_deck.i3d.shapes">
+  </Shapes>
+
+  <Scene>
+    <Shape name="johnDeere110_120_deck_component" shapeId="1" dynamic="true" compound="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" clipDistance="300" nodeId="60" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="15">
+      <TransformGroup name="johnDeere110_112_deck" nodeId="61">
+        <TransformGroup name="attacherJoints" translation="0 0 4.43459e-08" rotation="6.83019e-06 -0 0" nodeId="62">
+          <TransformGroup name="attacherJointRot" translation="0 0.290833 0.0955357" rotation="9.70628e-20 8.14222e-13 -90" nodeId="63">
+            <TransformGroup name="attacherJoint" nodeId="64"/>
+          </TransformGroup>
+          <TransformGroup name="topReferenceNode" rotation="-90 -1.05751e-05 0" nodeId="65"/>
+        </TransformGroup>
+        <TransformGroup name="animations" nodeId="66">
+          <TransformGroup name="deckTurnOn" nodeId="67">
+            <TransformGroup name="movingParts" nodeId="68">
+              <TransformGroup name="knifes_pulley_rot" rotation="0 -0 90" nodeId="69">
+                <Shape name="knife01" translation="0.276325 -0.293745 -0.0443672" shapeId="2" clipDistance="300" nodeId="70" castsShadows="true" receiveShadows="true" materialIds="7"/>
+                <Shape name="knife02" translation="0.276325 -0.0199079 0.0400823" shapeId="3" clipDistance="300" nodeId="71" castsShadows="true" receiveShadows="true" materialIds="7"/>
+                <Shape name="knife03" translation="0.276325 0.19492 -0.0749606" shapeId="4" clipDistance="300" nodeId="72" castsShadows="true" receiveShadows="true" materialIds="7"/>
+                <Shape name="pulleyDeck_moving" translation="0.275984 0.0884394 -0.160082" shapeId="5" clipDistance="300" nodeId="73" castsShadows="true" receiveShadows="true" materialIds="9"/>
+              </TransformGroup>
+              <TransformGroup name="joint_beltDown" translation="-0.0860697 0.262739 -0.142242" clipDistance="300" nodeId="74">
+                <TransformGroup name="boneBeltDownB" rotation="90 -0 0" nodeId="75"/>
+              </TransformGroup>
+              <TransformGroup name="supportDeck_moving01Ref" translation="-8.87318e-08 0.286773 -0.179184" rotation="180 -1.86693e-05 180" nodeId="76"/>
+              <TransformGroup name="supportDeck_moving02Ref" translation="-2.57037e-08 0.22565 0.313541" rotation="173.44 -5.00896e-06 -180" nodeId="77"/>
+            </TransformGroup>
+            <TransformGroup name="workAreas" nodeId="78">
+              <TransformGroup name="WorkAreaStart" translation="-0.631498 2.66245e-17 0.2" rotation="0 -3.5267e-15 -3.18055e-15" nodeId="79"/>
+              <TransformGroup name="WorkAreaWidth" translation="0.68216 -1.01119e-17 0.2" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="80"/>
+              <TransformGroup name="WorkAreaHeight" translation="-0.5 -1.01045e-16 -0.2" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="81"/>
+              <TransformGroup name="DropAreaStart" translation="-1.2221 2.7657e-16 0.1" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="82"/>
+              <TransformGroup name="DropAreaWidth" translation="-0.5 2.96601e-16 0.1" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="83"/>
+              <TransformGroup name="DropAreaHeight" translation="-1 1.45111e-16 -0.3" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="84"/>
+              <TransformGroup name="WorkAreaStart2" translation="-0.648163 3.41159e-17 0.2" rotation="0 -3.5267e-15 -3.18055e-15" nodeId="85"/>
+              <TransformGroup name="WorkAreaWidth2" translation="0.646409 -8.12732e-18 0.2" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="86"/>
+              <TransformGroup name="WorkAreaHeight2" translation="-0.5 -1.01045e-16 -0.2" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="87"/>
+              <TransformGroup name="DropAreaStart2" translation="-0.746277 1.79955e-16 0.2" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="88"/>
+              <TransformGroup name="DropAreaWidth2" translation="0.3 3.96781e-18 0.2" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="89"/>
+              <TransformGroup name="DropAreaHeight2" translation="-0.3 -4.50829e-17 -0.2" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="90"/>
+            </TransformGroup>
+            <TransformGroup name="effects" translation="-3.9443e-33 0 0" nodeId="91">
+              <TransformGroup name="mowerEffectNode01" translation="-0.352121 0.0322269 0.0629554" rotation="0 -20.9854 0" scale="0.2 0.2 0.2" nodeId="92"/>
+              <Shape name="smokeEmitter" shapeId="6" clipDistance="300" nodeId="93" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="17"/>
+            </TransformGroup>
+            <TransformGroup name="groundReference" nodeId="94">
+              <TransformGroup name="groundReferenceNode" nodeId="95"/>
+              <TransformGroup name="groundReferenceNode_mulcher" nodeId="96"/>
+              <TransformGroup name="groundWheelReferenceNode" nodeId="97"/>
+            </TransformGroup>
+            <TransformGroup name="mulcherEffectNode" translation="-0.352121 0.0322269 0.0629554" rotation="0 -20.9854 0" scale="0.2 0.2 0.2" nodeId="98"/>
+            <TransformGroup name="mowerEffectNode02" translation="-0.485373 -0.03342 0.304172" rotation="0 -33.2769 0" scale="0.25 0.25 0.25" nodeId="99"/>
+            <TransformGroup name="visualsDeck" nodeId="100">
+              <Shape name="johnDeere110_112_deck_vis" scale="1.5 1 1.5" shapeId="7" clipDistance="300" nodeId="101" castsShadows="true" receiveShadows="true" materialIds="9,7"/>
+              <Shape name="rivetsDeck_vis" shapeId="8" visibility="false" clipDistance="50" nodeId="102" castsShadows="true" receiveShadows="true" decalLayer="1" materialIds="19"/>
+              <Shape name="SM_Modding_Attribute" translation="-0.709714 0.194721 0.188493" rotation="90.4503 -24 0" scale="0.1 0.1 0.1" shapeId="9" nodeId="103" castsShadows="false" receiveShadows="false" distanceBlending="false" materialIds="24"/>
+              <Shape name="Forward_Arrow" translation="7.53376e-08 0.253507 0.231209" rotation="180 -1.86693e-05 180" scale="0.4 0.4 0.3" shapeId="9" nodeId="104" castsShadows="false" receiveShadows="false" distanceBlending="false" materialIds="23"/>
+              <Shape name="plane" translation="0.665126 0.217618 -0.0882284" rotation="-0 90 0" scale="0.1 0.1 0.1" shapeId="9" nodeId="105" castsShadows="false" receiveShadows="false" distanceBlending="false" materialIds="21"/>
+              <Shape name="plane" translation="-0.609751 0.189031 0.224821" rotation="90 -20 0" scale="0.1 0.1 0.1" shapeId="9" nodeId="106" castsShadows="false" receiveShadows="false" distanceBlending="false" materialIds="21"/>
+              <Shape name="Rubber_Chute" translation="-0.736901 0.265519 0.0856281" rotation="7.59148e-07 -6.78787e-06 -3" scale="1 1 1.1" shapeId="10" clipDistance="300" nodeId="107" castsShadows="true" receiveShadows="true" materialIds="13">
+                <Shape name="adesivosAviso2" translation="0.627125 -0.195894 -0.247412" rotation="-7.58934e-06 6.78787e-06 -8.99368e-14" shapeId="11" visibility="false" clipDistance="50" nodeId="108" castsShadows="true" receiveShadows="true" materialIds="14"/>
+                <Shape name="colisao2" shapeId="12" compoundChild="true" collisionFilterGroup="0x2002" collisionFilterMask="0x2002" density="0.001" clipDistance="300" nodeId="109" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="15"/>
+                <TransformGroup name="foliage" rotation="0 -26.3181 -2.27095e-13" nodeId="110">
+                  <TransformGroup name="foliage" translation="-0.462365 -0.140957 -0.298628" nodeId="111"/>
+                </TransformGroup>
+              </Shape>
+              <Shape name="wheelLeft_deck" translation="0.700645 0.178875 -0.405855" shapeId="13" clipDistance="300" nodeId="166" castsShadows="true" receiveShadows="true" materialIds="163,162"/>
+              <Shape name="wheelRight_deck" translation="-0.603103 0.178875 -0.284979" shapeId="14" clipDistance="300" nodeId="169" castsShadows="true" receiveShadows="true" materialIds="163,162"/>
+              <Shape name="rodasFrente" translation="-3.88836e-05 0.166479 0.50085" rotation="-6.83019e-06 -0 0" scale="1.15 1 1" shapeId="15" clipDistance="300" nodeId="173" castsShadows="true" receiveShadows="true" materialIds="177"/>
+              <Shape name="plane" translation="0.731602 0.178847 -0.0741685" rotation="-90 87 -180" scale="0.1 0.1 0.05" shapeId="9" nodeId="112" castsShadows="false" receiveShadows="false" distanceBlending="false" materialIds="22"/>
+            </TransformGroup>
+            <TransformGroup name="tensionObject" nodeId="113">
+              <Shape name="tensionObject_deck_01" shapeId="16" clipDistance="300" nodeId="114" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="15"/>
+              <Shape name="tensionObject_deck_02" shapeId="17" clipDistance="300" nodeId="115" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="15"/>
+            </TransformGroup>
+            <TransformGroup name="collisionDeck" nodeId="116">
+              <Shape name="colPart_deck_01" translation="0 0 0.030488" scale="1.5 1 1.5" shapeId="18" static="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" clipDistance="300" nodeId="117" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="16"/>
+              <Shape name="colPart_deck_02" scale="1.5 1 1.5" shapeId="19" static="true" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" clipDistance="300" nodeId="118" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="16"/>
+              <Shape name="colPart_deck_03" translation="0 -0.0724073 0.188793" scale="1.5 1.5 1" shapeId="20" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" density="0.001" nodeId="119" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="15"/>
+              <Shape name="colPart_deck_04" translation="-0.0663219 0 0" scale="1.26642 0.766421 1.26642" shapeId="21" compoundChild="true" collisionFilterGroup="0x10004" collisionFilterMask="0xfe3ffb83" density="0.001" nodeId="120" castsShadows="true" receiveShadows="true" nonRenderable="true" materialIds="15"/>
+            </TransformGroup>
+          </TransformGroup>
+          <TransformGroup name="moving" nodeId="121">
+            <Shape name="supportDeck_moving01" translation="0 0.286773 0.0931322" rotation="180 -5.00896e-06 180" shapeId="22" visibility="false" clipDistance="300" nodeId="122" castsShadows="true" receiveShadows="true" materialIds="18,8"/>
+            <Shape name="supportDeck_moving02" translation="7.45058e-09 0.186537 0.653668" rotation="173.44 -5.00896e-06 -180" shapeId="23" visibility="false" clipDistance="300" nodeId="123" castsShadows="true" receiveShadows="true" materialIds="8"/>
+          </TransformGroup>
+          <TransformGroup name="turnOn" visibility="false" nodeId="124">
+            <Shape name="supportPulleyDeck_vis" translation="-0.117112 0.297621 0.406601" shapeId="24" visibility="false" clipDistance="300" nodeId="125" castsShadows="true" receiveShadows="true" materialIds="5,10">
+              <Shape name="supportPulleyDeck_startStop" translation="0.117112 -0.297621 -0.406601" shapeId="25" clipDistance="300" nodeId="126" castsShadows="true" receiveShadows="true" materialIds="5">
+                <Shape name="pulleyDeck02" translation="-0.185862 0.404295 0.355648" shapeId="26" clipDistance="300" nodeId="127" castsShadows="true" receiveShadows="true" materialIds="5"/>
+                <Shape name="supportPulleyDeck_trans" translation="-0.117112 0.297621 0.406601" shapeId="27" clipDistance="300" nodeId="128" castsShadows="true" receiveShadows="true" materialIds="5,10"/>
+                <Shape name="springStartStop" translation="-0.179028 0.496001 0.32578" rotation="-153.98 -0 0" shapeId="28" clipDistance="300" nodeId="129" castsShadows="true" receiveShadows="true" materialIds="5">
+                  <Shape name="spring_vis" rotation="0.272683 -0 0" shapeId="29" clipDistance="300" nodeId="130" castsShadows="true" receiveShadows="true" materialIds="20"/>
+                </Shape>
+                <TransformGroup name="joint_beltSide" translation="-0.186862 0.39884 0.372541" clipDistance="300" nodeId="131">
+                  <TransformGroup name="boneBeltSideB" rotation="90 -0 0" nodeId="132"/>
+                </TransformGroup>
+              </Shape>
+            </Shape>
+            <Shape name="startStop" translation="-0.200886 0.435092 0.213578" shapeId="30" visibility="false" clipDistance="300" nodeId="133" castsShadows="true" receiveShadows="true" materialIds="5">
+              <Shape name="startStop_decal" translation="0.200886 -0.435092 -0.213578" shapeId="31" clipDistance="50" nodeId="134" castsShadows="true" receiveShadows="true" decalLayer="1" materialIds="12"/>
+              <TransformGroup name="springStartStopRef" translation="0.021858 0.118953 -0.00670072" rotation="-153.98 -0 0" nodeId="135"/>
+            </Shape>
+            <TransformGroup name="pulleyTurnOn" visibility="false" nodeId="136">
+              <Shape name="pulleyDeck01" translation="-0.185862 0.497129 0.406601" shapeId="32" clipDistance="300" nodeId="137" castsShadows="true" receiveShadows="true" materialIds="5"/>
+              <Shape name="pulleyDeck03" translation="-0.185862 0.297621 0.406601" shapeId="33" clipDistance="300" nodeId="138" castsShadows="true" receiveShadows="true" materialIds="5"/>
+            </TransformGroup>
+            <Shape name="leverUpDown" translation="0.146151 0.539569 0.068022" shapeId="34" visibility="false" clipDistance="300" nodeId="139" castsShadows="true" receiveShadows="true" materialIds="5,6"/>
+          </TransformGroup>
+        </TransformGroup>
+        <TransformGroup name="visual" nodeId="140">
+          <Shape name="coverPulley" shapeId="35" visibility="false" clipDistance="300" nodeId="141" castsShadows="true" receiveShadows="true" materialIds="5"/>
+        </TransformGroup>
+        <TransformGroup name="aiMarker" nodeId="142">
+          <TransformGroup name="aiMarkerLeft" translation="0.7 0 0.5" rotation="0 -3.5267e-15 -3.18055e-15" nodeId="143"/>
+          <TransformGroup name="aiMarkerRight" translation="-0.7 0 0.5" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="144"/>
+          <TransformGroup name="aiMarkerBack" translation="0 -2.42032e-16 -0.1" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="145"/>
+          <TransformGroup name="aiSizeMarkerLeft" translation="0.7 0 0.5" rotation="0 -3.5267e-15 -3.18055e-15" nodeId="146"/>
+          <TransformGroup name="aiSizeMarkerRight" translation="-0.7 0 0.5" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="147"/>
+          <TransformGroup name="aiSizeMarkerBack" translation="0 -1.01045e-16 -0.1" rotation="-2.79371e-14 -3.5267e-15 -3.18055e-15" nodeId="148"/>
+          <TransformGroup name="aiCollisionNode" nodeId="149"/>
+        </TransformGroup>
+        <TransformGroup name="skinnedMesh" nodeId="150">
+          <Shape name="beltDeck_side" shapeId="36" visibility="false" clipDistance="300" nodeId="151" castsShadows="true" receiveShadows="true" skinBindNodeIds="153 132" materialIds="11"/>
+          <TransformGroup name="rootJoint_beltSide" clipDistance="300" nodeId="152">
+            <TransformGroup name="boneBeltSideA" rotation="90 -0 0" nodeId="153"/>
+          </TransformGroup>
+          <Shape name="beltDeck_down" shapeId="37" clipDistance="300" nodeId="154" castsShadows="true" receiveShadows="true" skinBindNodeIds="156 75" materialIds="180"/>
+          <TransformGroup name="rootJoint_beltDown" clipDistance="300" nodeId="155">
+            <TransformGroup name="boneBeltDownA" rotation="90 -0 0" nodeId="156"/>
+          </TransformGroup>
+        </TransformGroup>
+      </TransformGroup>
+    </Shape>
+  </Scene>
+
+</i3D>
