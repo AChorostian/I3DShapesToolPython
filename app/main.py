@@ -8,6 +8,8 @@ from core.key import KEY_CONST
 from core.exporter import WavefrontOBJExporter
 from core.exporter import ExportMode
 
+from gui.main_window import launch_gui
+
 import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(format="{asctime} [{levelname}] {message}", style="{")
@@ -96,6 +98,6 @@ def main(args):
             continue
         elist_new.append(e)
 
-
+    launch_gui(scene=elist_new)
 
     export_to_obj(elist_new, args.i3d_file)
