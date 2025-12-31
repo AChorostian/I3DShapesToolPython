@@ -8,6 +8,11 @@ from core.key import KEY_CONST
 from core.exporter import WavefrontOBJExporter
 from core.exporter import ExportMode
 
+import logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(format="{asctime} [{levelname}] {message}", style="{")
+logger.setLevel(logging.DEBUG)
+
 
 def parse_header(data):
     if (data[0] >= 4): # Might be 5 as well 
@@ -44,17 +49,33 @@ def read_entity(cipher: I3DCipher, stream, file_version):
 
 
 def read_entities(cipher, stream, file_version, count):
-    return [read_entity(cipher, stream, file_version) for _ in range(count)]
+    entities_list = []
+    for i in range(count):
+        e = read_entity(cipher, stream, file_version)
+        logger.info(f"Shape {i+1}/{count} loaded.\n")
+        entities_list.append(e)
+    return entities_list
 
+def export_to_obj(shapes, i3d_file):
+    if not os.path.isdir("data/output"):
+        os.mkdir("data/output")
+
+    # SINGLE FILES
+    for e in shapes:
+        with open(f"data/output/{e.id}_{e.name}.obj", "w", encoding="utf-8") as f:
+            WavefrontOBJExporter(e, mode=ExportMode.SINGLE).export(f)
+
+    # ONE FILE ONE MESH
+    with open(f"data/output/one_file_one_mesh.obj", "w", encoding="utf-8") as f:
+        WavefrontOBJExporter(shapes, mode=ExportMode.SINGLE, i3d_file=i3d_file).export(f)
+
+    # ONE FILE MULTI MESH
+    with open(f"data/output/one_file_multi_mesh.obj", "w", encoding="utf-8") as f:
+        WavefrontOBJExporter(shapes, mode=ExportMode.MULTIPLE, i3d_file=i3d_file).export(f)
 
 def main(args):
 
-    path1 = args.shapes_file
-
-    path2 = args.i3d_file
-
-
-    with open(path1, "rb") as f:
+    with open(args.shapes_file, "rb") as f:
         version, seed, endian = parse_header(f.read(4))
         print("version: " + str(version))
         print("seed: " + str(seed))
@@ -63,31 +84,18 @@ def main(args):
         cipher = I3DCipher(seed, KEY_CONST)
 
         entities_bytes = f.read(4)
-        entities = struct.unpack("<I", cipher.decrypt_stream(entities_bytes))[0]
-        print("entities: " + str(entities))
+        entities_count = struct.unpack("<I", cipher.decrypt_stream(entities_bytes))[0]
+        print("entities: " + str(entities_count))
 
-        entities_list = read_entities(cipher, f, version, entities)
-        
-        if not os.path.isdir("data/output"):
-            os.mkdir("data/output")
+        entities_list = read_entities(cipher, f, version, entities_count)
 
-        # SINGLE FILES
-        for e in entities_list:
-            with open(f"data/output/{e.id}_{e.name}.obj", "w", encoding="utf-8") as f:
-                WavefrontOBJExporter(e, mode=ExportMode.SINGLE).export(f)
-
-        # delete componentshapes
-        elist_new = []
-        for e in entities_list:
-            if "Shape" in e.name:
-                continue
-            elist_new.append(e)
+    # delete componentshapes
+    elist_new = []
+    for e in entities_list:
+        if "Shape" in e.name:
+            continue
+        elist_new.append(e)
 
 
-        # ONE FILE ONE MESH
-        with open(f"data/output/one_file_one_mesh.obj", "w", encoding="utf-8") as f:
-            WavefrontOBJExporter(elist_new, mode=ExportMode.SINGLE, i3d_file=path2).export(f)
 
-        # ONE FILE MULTI MESH
-        with open(f"data/output/one_file_multi_mesh.obj", "w", encoding="utf-8") as f:
-            WavefrontOBJExporter(elist_new, mode=ExportMode.MULTIPLE, i3d_file=path2).export(f)
+    export_to_obj(elist_new, args.i3d_file)

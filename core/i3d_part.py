@@ -1,4 +1,8 @@
 from enum import IntFlag
+import logging
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG, format="{asctime} [{levelname:>7} ] {message}", style="{")
+LOG_LEN = 58
 
 
 class I3d_part:
@@ -20,6 +24,9 @@ class I3d_part:
         self.name = reader.read_bytes(name_len).decode("utf-8", errors="replace")
         reader.align()
         self.id = reader.read("<I")
+        size = 4 + ((name_len+3) & ~3) + 4
+        text = f"Shape {self.id}. {self.name} (size: {size})"
+        logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
 
     def read_contents(reader, file_version):
         # to overload
@@ -56,7 +63,6 @@ class Options(IntFlag):
 
 
 class I3d_shape(I3d_part):
-    VERSION_WITH_TANGENTS = 5
 
     def __init__(self):
         super().__init__()
@@ -87,35 +93,50 @@ class I3d_shape(I3d_part):
         self.detect_unknown_options()
         options = Options(self.options_raw)
 
+        size = 32
         if file_version >= 10:
             vtx_compression = reader.read("<f")
-            print(f"[WARNING] VTX Compression enabled (but not handled): {vtx_compression}")
+            size += 4
+            #logger.warning(f"VTX Compression: {vtx_compression} (not handled)")
 
+        text = f"Shape info loaded. (size: {size})"
+        logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
+
+        size = 0
         for _ in range(num_subsets):
             subset = {}
             subset["FirstVertex"] = reader.read("<I")
             subset["NumVertices"] = reader.read("<I")
             subset["FirstIndex"] = reader.read("<I")
             subset["NumIndices"] = reader.read("<I")
+            size += 16
 
             if file_version >= 6:
                 if Options.HAS_UV1 in options:
                     subset["UVDensity1"] = reader.read("<f")
+                    size += 4
                 if Options.HAS_UV2 in options:
                     subset["UVDensity2"] = reader.read("<f")
+                    size += 4
                 if Options.HAS_UV3 in options:
                     subset["UVDensity3"] = reader.read("<f")
+                    size += 4
                 if Options.HAS_UV4 in options:
                     subset["UVDensity4"] = reader.read("<f")
+                    size += 4
             self.subsets.append(subset)
+        text = f"subsets info loaded. (size: {size})"
+        logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
 
         if (self.id == 2):
             {}
 
         if file_version >= 10:
             material_names = []
+            size = 0
             for _ in range(num_subsets):
                 count = reader.read("<H")
+                size += 2 + count
 
                 if count > 0:
                     mat_name_bytes = reader.read_bytes(count)
@@ -124,7 +145,11 @@ class I3d_shape(I3d_part):
                     material_names.append(None)
             reader.align()
 
-            print(material_names)
+        size = (size+3) & ~3
+        text = f"materials info loaded. (size: {size})"
+        logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
+
+            #print(material_names)
 
         for i in range(self.corner_count // 3):
             if self.vertex_count <= 0xFFFF:
@@ -132,16 +157,27 @@ class I3d_shape(I3d_part):
             else:
                 tri = [reader.read("<I") +1 for _ in range(3)]  # uint
             self.triangles.append(tri)
-
         reader.align()
 
+        size = self.corner_count * (2 if self.vertex_count <= 0xFFFF else 4)
+        size = (size+3) & ~3
+        text = f"triangles loaded. (size: {size})"
+        logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
+
         self.positions = [list(reader.read("<3f")) for _ in range(self.vertex_count)]
+        text = f"Positions loaded. (size: {len(self.positions)*3*4})"
+        logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
 
         if Options.HAS_NORMALS in options:
             self.normals = [list(reader.read("<3f")) for _ in range(self.vertex_count)]
+            text = f"Normals loaded. (size: {len(self.normals)*3*4})"
+            logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
+
 
         if Options.HAS_TANGENTS in options and file_version >= 10:
             self.tangents = [list(reader.read("<4f")) for _ in range(self.vertex_count)]
+            text = f"Tangents loaded. (size: {len(self.tangents)*4*4})"
+            logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
 
         for uv_idx in range(4):
             uv_flag = 2 << uv_idx
@@ -150,9 +186,13 @@ class I3d_shape(I3d_part):
                 self.uvsets.append(uvs)
             else:
                 self.uvsets.append(None)
+            text = f"UV loaded. (size: ?)"
+            logger.debug(f"{text:<{LOG_LEN}} position: {reader.pos}")
 
         if Options.HAS_VERTEX_COLOR in options:
             self.vertexcolor = [list(reader.read("<4f")) for _ in range(self.vertex_count)]
+            logger.info("Vertex color loaded.")
+            logger.debug(f"reader pos: {reader.pos}")
 
         if Options.HAS_SKINNING_INFO in options:
             single_blend = Options.SINGLE_BLEND in options
@@ -162,15 +202,36 @@ class I3d_shape(I3d_part):
                 self.blend_weights = [[reader.read("<f") for _ in range(num_indices)] for _ in range(self.vertex_count)]
 
             self.blend_indices = [[reader.read("<B") for _ in range(num_indices)] for _ in range(self.vertex_count)]
+            logger.info("Skinning info loaded.")
+            logger.debug(f"reader pos: {reader.pos}")
      
+        # Generic data - parsed but not used
         if Options.HAS_GENERIC in options:
             self.generic_data = [reader.read("<f") for _ in range(self.vertex_count)]
+            logger.info("Generic loaded.")
+            logger.debug(f"reader pos: {reader.pos}")
 
+        # Attachments - Parsed but not used
         num_attachments = reader.read("<I")
-        self.attachments = [reader.read("<I") for _ in range(num_attachments)]
+        if num_attachments>0:
+            self.attachments = [self.read_attachment(reader) for _ in range(num_attachments)]
+            logger.info(f"Attachments {num_attachments} loaded.")
+            logger.debug(f"reader pos: {reader.pos}")
 
-        print(f"position: {reader.pos}")
-        print(f"size: {len(reader.data)}")
+        if reader.pos != len(reader.data):
+            logger.error(f"reader pos: {reader.pos} is not equal to len(reader.data):{len(reader.data)}")
+
+
+    def read_attachment(self, reader):
+        flags = reader.read("<I")
+
+        if ((flags & 4) != 0):
+            numbers = list(reader.read("<3f"))
+        
+        num_bytes = reader.read("<i")
+        text = reader.read_bytes(num_bytes).decode("utf-8", errors="replace")
+
+        logger.debug(f"ATT: {text}")
 
 
 
