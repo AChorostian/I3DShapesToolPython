@@ -8,8 +8,6 @@ from core.key import KEY_CONST
 from core.exporter import WavefrontOBJExporter
 from core.exporter import ExportMode
 
-from gui.main_window import launch_gui
-
 import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(format="{asctime} [{levelname}] {message}", style="{")
@@ -75,7 +73,7 @@ def export_to_obj(shapes, i3d_file):
     with open(f"data/output/one_file_multi_mesh.obj", "w", encoding="utf-8") as f:
         WavefrontOBJExporter(shapes, mode=ExportMode.MULTIPLE, i3d_file=i3d_file).export(f)
 
-def main(args):
+def launch_cli(args):
 
     with open(args.shapes_file, "rb") as f:
         version, seed, endian = parse_header(f.read(4))
@@ -97,7 +95,5 @@ def main(args):
         if "Shape" in e.name:
             continue
         elist_new.append(e)
-
-    launch_gui(scene=elist_new)
 
     export_to_obj(elist_new, args.i3d_file)

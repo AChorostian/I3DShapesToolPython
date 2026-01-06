@@ -4,6 +4,8 @@ from OpenGL.GL import *
 
 class GLMesh:
     def __init__(self, shape, center=False):
+        self.shape = shape
+        self.name = str(shape.id) + ". " + shape.name
         self.vertices = np.array(shape.positions, dtype=np.float32)
         self.indices = np.array(
             [i - 1 for tri in shape.triangles for i in tri],
@@ -18,6 +20,8 @@ class GLMesh:
 
         if center:
             self.vertices -= self.vertices.mean(axis=0)
+
+        self.display = True
 
     def upload(self):
         self.vbo = glGenBuffers(1)
@@ -37,8 +41,12 @@ class GLMesh:
         glEnableClientState(GL_VERTEX_ARRAY)
 
         glVertexPointer(3, GL_FLOAT, 0, None)
-        glDrawElements(GL_TRIANGLES, self.index_count, GL_UNSIGNED_INT, None)
+        if self.display:
+            glDrawElements(GL_TRIANGLES, self.index_count, GL_UNSIGNED_INT, None)
 
         glDisableClientState(GL_VERTEX_ARRAY)
         glBindBuffer(GL_ARRAY_BUFFER, 0)
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
+
+    def set_display(self, b):
+        self.display = b

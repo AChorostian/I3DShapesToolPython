@@ -1,5 +1,6 @@
 import argparse
-from app.main import main
+from cli.main import launch_cli
+from gui.main_window import launch_gui
 
 
 def parse_args():
@@ -9,13 +10,15 @@ def parse_args():
     )
 
     parser.add_argument(
-        "shapes_file",
-        help="Path to .i3d.shapes file"
+        "files",
+        nargs="*",
+        help="Input files (.i3d, .i3d.shapes, .xml)"
     )
 
     parser.add_argument(
-        "i3d_file",
-        help="Path to .i3d file"
+        "--nogui",
+        action="store_true",
+        help="Run in CLI mode without GUI"
     )
 
     return parser.parse_args()
@@ -23,4 +26,8 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    main(args)
+
+    if (args.nogui):
+        launch_cli(args.files)
+    else:
+        launch_gui(args.files)

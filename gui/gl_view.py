@@ -3,30 +3,38 @@ from gui.gl_mesh import GLMesh
 from OpenGL.GL import *
 from OpenGL.GLU import gluPerspective
 
+DEFAULT_VIEW_LINES = True
+DEFAULT_VIEW_ROTX = 20
+DEFAULT_VIEW_ROTY = -30
+DEFAULT_VIEW_ZOOM = 3.0
+
 class GLView(QOpenGLWidget):
-    def __init__(self, shapes, labels):
+    def __init__(self, shapes=[], labels=None):
         super().__init__()
-        self.shapes = shapes
-        self.meshes = []
+        self.meshes = [GLMesh(s) for s in shapes]
 
         # camera
         self.labels = labels
-        self.rot_x = 20.0
-        self.rot_y = -30.0
-        self.distance = 1.0
+        self.reset_camera()
         self.last_pos = None
 
-        self.wireframe = False
+        self.wireframe = DEFAULT_VIEW_LINES
+
+    def update_shapes(self, shapes):
+        self.meshes = [GLMesh(s) for s in shapes]
+        for m in self.meshes:
+            m.upload()
+        self.reset_camera()
+
+    def reset_camera(self):
+        self.rot_x = DEFAULT_VIEW_ROTX
+        self.rot_y = DEFAULT_VIEW_ROTY
+        self.distance = DEFAULT_VIEW_ZOOM
+        self.update()
 
     def initializeGL(self):
         glClearColor(0.1, 0.1, 0.1, 1.0)
         glEnable(GL_DEPTH_TEST)
-
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)
-
-        self.meshes = [GLMesh(s) for s in self.shapes]
-        for m in self.meshes:
-            m.upload()
 
     def resizeGL(self, w, h):
         glViewport(0, 0, w, h)
